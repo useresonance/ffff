@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ресторан "Гастрономический Рай"</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/style.css">
+  <script>
+    function sendBookingToTelegram(event) {
+      event.preventDefault(); // Предотвращаем стандартное поведение формы
+
+      // Получаем данные из формы
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const guests = document.getElementById('guests').value;
+
+      // Формируем сообщение для Telegram
+      const message = `
+      Новая бронь:
+      Имя: ${name}
+      Email: ${email}
+      Телефон: ${phone}
+      Дата: ${date}
+      Время: ${time}
+      Количество гостей: ${guests}
+      `;
+
+      // Замените YOUR_BOT_TOKEN и YOUR_CHAT_ID на реальные данные
+      const botToken = '8184498313:AAEYbSjbu-qdgDGei81g9mVrilmB6CiFBRI';
+      const chatId = '-4775708239';
+      const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+      // Отправляем сообщение в Telegram через fetch
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          if (data.ok) {
+            alert('Ваше бронирование успешно отправлено!');
+          } else {
+            alert('Ошибка при отправке бронирования.');
+          }
+        })
+        .catch(error => {
+          alert('Ошибка при отправке данных: ' + error);
+        });
+    }
+  </script>
+</head>
+<body>
+  <video id="background-video" autoplay loop muted>
+    <source src="video.mp4" type="video/mp4">
+    Ваш браузер не поддерживает видео.
+  </video>
+
+  <header>
+    <div class="content-overlay">
+      <h1>Гастрономический Рай</h1>
+      <nav>
+        <ul>
+          <li><a href="#menu">Меню</a></li>
+          <li><a href="#about">О нас</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+          <li><a href="#booking" class="book-button">Забронировать</a></li>
+        </ul>
+      </nav>
+      <div class="auth-buttons"> 
+        <a href="register.html" class="button">Регистрация</a>
+        <a href="login.html" class="button">Вход</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="hero">
+    <div class="container">
+      <h2>Добро пожаловать в "Гастрономический Рай"!</h2>
+      <p>Изысканные блюда, неповторимая атмосфера и высочайший уровень обслуживания.</p>
+      <a href="#menu" class="button">Посмотреть меню</a>
+    </div>
+  </section>
+
+  <section id="menu">
+    <div class="container">
+      <h2>Наше Меню</h2>
+      <div class="menu-grid">
+        <div class="nft">
+          <img class="tokenImage" src="блюдо1.jpg" alt="Утка по-пекински">
+          <div class="main">
+            <h2>Утка по-пекински</h2>
+            <p class="description">Нежнейшая утка, запеченная до золотистой корочки, с хрустящими блинчиками и соусом Хойсин.</p>
+            <hr>
+            <div class="tokenInfo">
+              <div class="price">
+                <ins>₸</ins>12000
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nft">
+          <img class="tokenImage" src="блюдо2.jpg" alt="Стейк Рибай">
+          <div class="main">
+            <h2>Стейк Рибай</h2>
+            <p class="description">Сочный стейк из мраморной говядины, приготовленный на гриле до идеальной прожарки.</p>
+            <hr>
+            <div class="tokenInfo">
+              <div class="price">
+                <ins>₸</ins>16000
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nft">
+          <img class="tokenImage" src="блюдо3.jpg" alt="Лобстер Термидор">
+          <div class="main">
+            <h2>Лобстер Термидор</h2>
+            <p class="description">Изысканное блюдо из лобстера, запеченного под сливочным соусом с сыром Пармезан.</p>
+            <hr>
+            <div class="tokenInfo">
+              <div class="price">
+                <ins>₸</ins>25000
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="nft">
+          <img class="tokenImage" src="блюдо4.jpg" alt="Тирамису">
+          <div class="main">
+            <h2>Тирамису</h2>
+            <p class="description">Классический итальянский десерт из нежного сыра маскарпоне, печенья савоярди и ароматного кофе.</p>
+            <hr>
+            <div class="tokenInfo">
+              <div class="price">
+                <ins>₸</ins>3500
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <h2>О Нас</h2>
+      <p>Мы - команда увлеченных профессионалов, стремящихся подарить нашим гостям незабываемые гастрономические впечатления. Наш шеф-повар, обладатель звезды Мишлен, создает настоящие шедевры кулинарного искусства, используя только самые свежие и качественные ингредиенты.</p>
+    </div>
+  </section>
+
+  <section id="contacts">
+    <div class="container">
+      <h2>Контакты</h2>
+      <p>Адрес: г.Алматы, ул. Достык 56</p>
+      <p>Телефон: +7 (707) 123-45-67</p>
+      <p>Email: info@gastroraycateclol.kz</p>
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6913.304598083634!2d76.95422863282182!3d43.237031597994836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836f026e53ac61%3A0xe89c8a631bfbbd88!2sDostyk%20Plaza!5e0!3m2!1sru!2skz!4v1737115816564!5m2!1sru!2skz" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section id="booking">
+    <div class="container">
+      <h2>Забронировать столик</h2>
+      <form onsubmit="sendBookingToTelegram(event)">
+        <label for="name">Ваше имя:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Ваш email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Ваш телефон:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="date">Дата:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="time">Время:</label>
+        <input type="time" id="time" name="time" required>
+
+        <label for="guests">Количество гостей:</label>
+        <input type="number" id="guests" name="guests" min="1" max="10" required>
+
+        <button type="submit" class="button">Забронировать</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Ресторан "Гастрономический Рай"</p>
+    </div>
+  </footer>
+
+</body>
+</html>

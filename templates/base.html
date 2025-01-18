@@ -1,0 +1,12 @@
+<nav>
+    <ul>
+      {% if session.get('user_id') %}
+        <li>Добро пожаловать, {{ session['username'] }}!</li>
+        <li><a href="/logout">Выход</a></li>
+      {% else %}
+        <li><a href="/login">Вход</a></li>
+        <li><a href="/register">Регистрация</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+  
